@@ -14,7 +14,8 @@ class TalentController extends Controller
      */
     public function index()
     {
-        return view('talent.index');
+        $talents = Talent::all();
+        return view('talent.index', ['talents'=>$talents]);
     }
 
     /**
@@ -24,7 +25,8 @@ class TalentController extends Controller
      */
     public function create()
     {
-        //
+        $talent = new Talent();
+        return view('talent.create', ['talent'=>$talent]);
     }
 
     /**
@@ -35,7 +37,10 @@ class TalentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $donnees = $request->all();
+        $talent = new Talent($donnees);
+        $talent->save();
+        return redirect()->action("TalentController@show", $talent);
     }
 
     /**
@@ -46,7 +51,7 @@ class TalentController extends Controller
      */
     public function show(Talent $talent)
     {
-        //
+        return view('talent.show', ['talent'=>$talent]);
     }
 
     /**
@@ -57,7 +62,7 @@ class TalentController extends Controller
      */
     public function edit(Talent $talent)
     {
-        //
+        return view('talent.edit', ['talent'=>$talent]);
     }
 
     /**
@@ -69,9 +74,22 @@ class TalentController extends Controller
      */
     public function update(Request $request, Talent $talent)
     {
-        //
+        $donnees = $request->all();
+        $talent->fill($donnees);
+        $talent->save();
+        return redirect()->action("TalentController@show", $talent);
     }
 
+    /**
+     * Show the form for deleting the specified resource.
+     *
+     * @param  \App\Talent  $talent
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Talent $talent)
+    {
+        return view('talent.delete', ['talent'=>$talent]);
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -80,6 +98,7 @@ class TalentController extends Controller
      */
     public function destroy(Talent $talent)
     {
-        //
+        $talent->delete();
+        return redirect()->action("TalentController@index");
     }
 }

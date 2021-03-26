@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class TalentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(TalentSeeder::class);
-        // $this->call(UsersTableSeeder::class);
+        DB::unprepared(file_get_contents(database_path('seeds\talent.sql')));
     }
 }

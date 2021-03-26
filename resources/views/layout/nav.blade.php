@@ -1,5 +1,7 @@
 <nav>
     <ul>
-        <li><a href="talent_create.php">Ajouter un talent</a></li>
+        <li><a href="{{action('PokemonController@index')}}">Les Pokémons</a></li>
+        <li><a href="{{action('TalentController@index')}}">Les talents</a></li>
     </ul>
+    @yield('menu-secondaire')
 </nav>
