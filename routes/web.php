@@ -33,6 +33,6 @@ Route::group(['prefix'=>'pokemon', 'where'=>['pokemon'=>'[0-9]+']], function() {
     Route::get('/{pokemon}', 'PokemonController@show');
     Route::get('/{pokemon}/edit', 'PokemonController@edit');
     Route::post('/{pokemon}/edit', 'PokemonController@update');
-    Route::post('/{pokemon}/delete', 'PokemonController@delete');
+    Route::get('/{pokemon}/delete', 'PokemonController@delete');
     Route::post('/{pokemon}/delete', 'PokemonController@destroy');
 });

@@ -21,7 +21,8 @@
         <td><input type="text" name="effet_terrain" id="effet_terrain" value="{{$talent->effet_terrain}}" /></td>
     </tr>
     <tr>
-        <th colspan="2"><input type="submit" value="Envoyer">
+        <th colspan="2">
+            <input type="submit" value="Envoyer">
         </th>
     </tr>
 </table>

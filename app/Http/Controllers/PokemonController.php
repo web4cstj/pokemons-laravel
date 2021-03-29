@@ -14,7 +14,8 @@ class PokemonController extends Controller
      */
     public function index()
     {
-        //
+        $pokemons = Pokemon::orderBy('numero')->limit(20)->get();
+        return view('pokemon.index', ['pokemons'=>$pokemons]);
     }
 
     /**
@@ -24,7 +25,8 @@ class PokemonController extends Controller
      */
     public function create()
     {
-        //
+        $pokemon = new Pokemon();
+        return view("pokemon.create", ['pokemon'=>$pokemon]);
     }
 
     /**
@@ -35,7 +37,11 @@ class PokemonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pokemon = new Pokemon();
+        $pokemon->fill($request->all());
+        $pokemon->numero = str_pad($pokemon->numero, 3, "0", STR_PAD_LEFT);
+        $pokemon->save();
+        return redirect()->action('PokemonController@show', $pokemon);
     }
 
     /**
@@ -46,7 +52,7 @@ class PokemonController extends Controller
      */
     public function show(Pokemon $pokemon)
     {
-        //
+        return view('pokemon.show', ['pokemon'=>$pokemon]);
     }
 
     /**
@@ -57,7 +63,7 @@ class PokemonController extends Controller
      */
     public function edit(Pokemon $pokemon)
     {
-        //
+        return view('pokemon.edit', ['pokemon'=>$pokemon]);
     }
 
     /**
@@ -69,7 +75,21 @@ class PokemonController extends Controller
      */
     public function update(Request $request, Pokemon $pokemon)
     {
-        //
+        $pokemon->fill($request->all());
+        $pokemon->numero = str_pad($pokemon->numero, 3, "0", STR_PAD_LEFT);
+        $pokemon->save();
+        return redirect()->action('PokemonController@show', $pokemon);
+    }
+
+    /**
+     * Show the form for deleting the specified resource.
+     *
+     * @param  \App\Pokemon  $pokemon
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Pokemon $pokemon)
+    {
+        return view('pokemon.delete', ['pokemon'=>$pokemon]);
     }
 
     /**
@@ -80,6 +100,7 @@ class PokemonController extends Controller
      */
     public function destroy(Pokemon $pokemon)
     {
-        //
+        $pokemon->delete();
+        return redirect()->action("PokemonController@index");
     }
 }

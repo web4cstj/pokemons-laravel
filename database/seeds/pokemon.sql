@@ -1,5 +1,5 @@
 BEGIN TRANSACTION;
-INSERT INTO `pokemons` (id,numero,nom_fr,nom_en,type1,type2,talents,pv,attaque,defense,attaque_speciale,defense_speciale,vitesse) VALUES (1,'001','Bulbizarre','Bulbasaur','plante','poison','Engrais/Chlorophylle',45,49,49,65,65,45),
+INSERT INTO `pokemon` (id,numero,nom_fr,nom_en,type1,type2,talents,pv,attaque,defense,attaque_speciale,defense_speciale,vitesse) VALUES (1,'001','Bulbizarre','Bulbasaur','plante','poison','Engrais/Chlorophylle',45,49,49,65,65,45),
  (2,'325','Spoink','Spoink','psy','','Isograisse/Tempo Perso/Gloutonnerie',60,25,35,70,80,60),
  (3,'165','Coxy','Ledyba','insecte','vol','Essaim/Matinal/Phobique',40,20,30,40,80,55),
  (4,'327','Spinda','Spinda','normal','','Tempo Perso/Pieds Confus/Contestation',60,60,60,60,60,60),
