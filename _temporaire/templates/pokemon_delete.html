@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="pokemon.css" />
+    <title>Monde Pokémons</title>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <h1>Monde Pokémons</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="pokemon_index.html">Les Pokémons</a></li>
+                <li><a href="talent_index.html">Les talents</a></li>
+            </ul>
+            <ul>
+                <li><a href="pokemon_index.html">Retour à la liste</a></li>
+                <li><a href="pokemon_show.html">Retour au Pokémon</a></li>
+                <li><a href="pokemon_edit.html">Modifier le Pokémon</a></li>
+            </ul>
+        </nav>
+        <footer>Web 4 Expressif</footer>
+        <div class="body">
+            <form action="pokemon_destroy.html" method="post">
+                <input type="hidden" name="_token" value="jYJPKjxxn9nspIuW2oaDBxPtNihqvUhkkZYKPSxO">
+                <p>Voulez-vous vraiment supprimer le Pokémon Bulbizarre (Bulbasaur)</p>
+                <button>Supprimer</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

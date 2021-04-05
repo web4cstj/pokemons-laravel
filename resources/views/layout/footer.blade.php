@@ -1,1 +1,0 @@
-<footer>Web 4 Expressif</footer>
