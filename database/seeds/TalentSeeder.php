@@ -11,6 +11,6 @@ class TalentSeeder extends Seeder
      */
     public function run()
     {
-        DB::unprepared(file_get_contents(database_path('seeds\talent.sql')));
+        DB::unprepared(file_get_contents(database_path('seeds/talent.sql')));
     }
 }
