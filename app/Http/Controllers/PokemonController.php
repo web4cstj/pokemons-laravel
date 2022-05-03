@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Pokemon;
+use App\Models\Pokemon;
 use Illuminate\Http\Request;
 
 class PokemonController extends Controller
@@ -15,7 +15,7 @@ class PokemonController extends Controller
     public function index()
     {
         $pokemons = Pokemon::orderBy('numero')->limit(20)->get();
-        return view('pokemon.index', ['pokemons'=>$pokemons]);
+        return view('pokemons.index', ['pokemons'=>$pokemons]);
     }
 
     /**
@@ -26,7 +26,7 @@ class PokemonController extends Controller
     public function create()
     {
         $pokemon = new Pokemon();
-        return view("pokemon.create", ['pokemon'=>$pokemon]);
+        return view("pokemons.create", ['pokemon'=>$pokemon]);
     }
 
     /**
@@ -41,36 +41,36 @@ class PokemonController extends Controller
         $pokemon->fill($request->all());
         $pokemon->numero = str_pad($pokemon->numero, 3, "0", STR_PAD_LEFT);
         $pokemon->save();
-        return redirect()->action('PokemonController@show', $pokemon);
+        return redirect()->route('pokemons.show', $pokemon);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Pokemon  $pokemon
+     * @param  \App\Models\Pokemon  $pokemon
      * @return \Illuminate\Http\Response
      */
     public function show(Pokemon $pokemon)
     {
-        return view('pokemon.show', ['pokemon'=>$pokemon]);
+        return view('pokemons.show', ['pokemon'=>$pokemon]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Pokemon  $pokemon
+     * @param  \App\Models\Pokemon  $pokemon
      * @return \Illuminate\Http\Response
      */
     public function edit(Pokemon $pokemon)
     {
-        return view('pokemon.edit', ['pokemon'=>$pokemon]);
+        return view('pokemons.edit', ['pokemon'=>$pokemon]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Pokemon  $pokemon
+     * @param  \App\Models\Pokemon  $pokemon
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Pokemon $pokemon)
@@ -78,29 +78,29 @@ class PokemonController extends Controller
         $pokemon->fill($request->all());
         $pokemon->numero = str_pad($pokemon->numero, 3, "0", STR_PAD_LEFT);
         $pokemon->save();
-        return redirect()->action('PokemonController@show', $pokemon);
+        return redirect()->route('pokemons.show', $pokemon);
     }
 
     /**
      * Show the form for deleting the specified resource.
      *
-     * @param  \App\Pokemon  $pokemon
+     * @param  \App\Models\Pokemon  $pokemon
      * @return \Illuminate\Http\Response
      */
     public function delete(Pokemon $pokemon)
     {
-        return view('pokemon.delete', ['pokemon'=>$pokemon]);
+        return view('pokemons.delete', ['pokemon'=>$pokemon]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Pokemon  $pokemon
+     * @param  \App\Models\Pokemon  $pokemon
      * @return \Illuminate\Http\Response
      */
     public function destroy(Pokemon $pokemon)
     {
         $pokemon->delete();
-        return redirect()->action("PokemonController@index");
+        return redirect()->route("pokemons.index");
     }
 }

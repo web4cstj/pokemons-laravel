@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Talent;
+use App\Models\Talent;
 use Illuminate\Http\Request;
 
 class TalentController extends Controller
@@ -15,7 +15,7 @@ class TalentController extends Controller
     public function index()
     {
         $talents = Talent::all();
-        return view('talent.index', ['talents'=>$talents]);
+        return view('talents.index', ['talents'=>$talents]);
     }
 
     /**
@@ -26,7 +26,7 @@ class TalentController extends Controller
     public function create()
     {
         $talent = new Talent();
-        return view('talent.create', ['talent'=>$talent]);
+        return view('talents.create', ['talent'=>$talent]);
     }
 
     /**
@@ -40,36 +40,36 @@ class TalentController extends Controller
         $donnees = $request->all();
         $talent = new Talent($donnees);
         $talent->save();
-        return redirect()->action("TalentController@show", $talent);
+        return redirect()->route("talents.show", $talent);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Talent  $talent
+     * @param  \App\Models\Talent  $talent
      * @return \Illuminate\Http\Response
      */
     public function show(Talent $talent)
     {
-        return view('talent.show', ['talent'=>$talent]);
+        return view('talents.show', ['talent'=>$talent]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Talent  $talent
+     * @param  \App\Models\Talent  $talent
      * @return \Illuminate\Http\Response
      */
     public function edit(Talent $talent)
     {
-        return view('talent.edit', ['talent'=>$talent]);
+        return view('talents.edit', ['talent'=>$talent]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Talent  $talent
+     * @param  \App\Models\Talent  $talent
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Talent $talent)
@@ -77,28 +77,29 @@ class TalentController extends Controller
         $donnees = $request->all();
         $talent->fill($donnees);
         $talent->save();
-        return redirect()->action("TalentController@show", $talent);
+        return redirect()->route("talents.show", $talent);
     }
 
     /**
      * Show the form for deleting the specified resource.
      *
-     * @param  \App\Talent  $talent
+     * @param  \App\Models\Talent  $talent
      * @return \Illuminate\Http\Response
      */
     public function delete(Talent $talent)
     {
-        return view('talent.delete', ['talent'=>$talent]);
+        return view('talents.delete', ['talent'=>$talent]);
     }
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Talent  $talent
+     * @param  \App\Models\Talent  $talent
      * @return \Illuminate\Http\Response
      */
     public function destroy(Talent $talent)
     {
         $talent->delete();
-        return redirect()->action("TalentController@index");
+        return redirect()->route("talents.index");
     }
 }

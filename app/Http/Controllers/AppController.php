@@ -11,7 +11,7 @@ class AppController extends Controller
     }
 
     public function installer() {
-        $db = \DB::connection()->getDatabaseName();
+        $db = env('DB_DATABASE', database_path('database.sqlite'));
         file_put_contents($db, '');
         \Artisan::call("migrate");
         \Artisan::call("db:seed");
